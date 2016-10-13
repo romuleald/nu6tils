@@ -1,0 +1,32 @@
+{
+  "name": "nu6tils",
+  "version": "1.0.1",
+  "description": "Toggle everything!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romuleald/toggler.git"
+  },
+  "keywords": [
+    "js",
+    "jquery",
+    "toggle"
+  ],
+  "author": {
+    "name": "Antoine Sanchez"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romuleald/toggler/issues"
+  },
+  "homepage": "https://github.com/romuleald/toggler#readme",
+  "readme": "# toggler\r\n\r\n## Usage \r\n\r\n* **Import script** toggler.js\r\n    * **Import script classic** `<script src=\"js/toggler.js\"></script>`\r\n    * **Import script ES6** `import toggler from 'js-toggler`\r\n* **Call function `togglers`** when document is ready\r\n```javascript\r\n$(function () {\r\n    togglers.init();\r\n});\r\n```\r\n* Mark your **html buttons** with class `JS_toggler`, a unique id string or number `data-toggler-id=\"1\"` and **name a group** for them `data-toggler-group=\"tab-item\"`. Only one or many.\r\n```html\r\n<ul>\r\n    <li><a data-toggler-id=\"1\" data-toggler-group=\"tab-item\" class=\"JS_toggler active\">btn 1</a></li>\r\n    <li><a data-toggler-id=\"2\" data-toggler-group=\"tab-item\" class=\"JS_toggler\">btn 2</a></li>\r\n    <li><a data-toggler-id=\"3\" data-toggler-group=\"tab-item\" class=\"JS_toggler\">btn 3</a></li>\r\n    <li><a data-toggler-id=\"4\" data-toggler-group=\"tab-item\" class=\"JS_toggler\">btn 4</a></li>\r\n    <li><a data-toggler-id=\"5\" data-toggler-group=\"tab-item\" class=\"JS_toggler\">btn 5</a></li>\r\n</ul>\r\n```\r\n* These buttons are linked to your **content divs** with attribute `data-toggler-itemid=\"1\"`. One content div or many. \r\n```html\r\n<div data-toggler-itemid=\"1\" data-toggler-group=\"tab-item\" class=\"JS_item_toggler active\">\r\n    tab content 1\r\n</div>\r\n<div data-toggler-itemid=\"2\" data-toggler-group=\"tab-item\" class=\"JS_item_toggler\">\r\n    tab content 2\r\n</div>\r\n...\r\n```\r\n* **Use your own css** to style `.active` elements !\r\n\r\n## Events / callback\r\nYour html content can listen to events `open.content` and `close.content`\r\nExample : \r\n```javascript\r\n$('.JS_item_toggler').on('open.content', function () {\r\n    dosomething();\r\n});\r\n```\r\n## Todo\r\n\r\n* Documentation\r\n  * events\r\n\r\n* Examples :\r\n  * layers\r\n\r\n## Version update\r\n\r\n### 1.1\r\n\r\n* Bring params to change css class and events\r\n",
+  "readmeFilename": "README.md",
+  "gitHead": "cfe688f11b52fa6a3d606a03ee8d225dd34fafcc",
+  "_id": "js-toggler@1.1.0",
+  "_shasum": "d87b382ab16c25006fb2bd19686508158106a2aa",
+  "_from": "js-toggler@*"
+}
