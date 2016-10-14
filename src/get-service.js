@@ -7,7 +7,7 @@ var useService = (function () {
     let endpoint = {};
 
     var init = function (endPoint) {
-        endpoint = Object.assign({}, jsonendpoint);
+        endpoint = Object.assign({}, endPoint);
     };
     /**
      *
