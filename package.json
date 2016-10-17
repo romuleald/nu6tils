@@ -1,6 +1,6 @@
 {
   "name": "nu6tils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Nurun Paris utilities",
   "main": "index.js",
   "scripts": {
