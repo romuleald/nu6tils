@@ -5,12 +5,12 @@
 var module = (function () {
 
 
-    var SELECTOR = 'js-module-init';
-
+    const SELECTOR_INITIALIZED = 'js-module-init';
+    let regIsInit = new RegExp(SELECTOR_INITIALIZED);
     /*
      module auto init
      just add .js-module to an HTML elem and a module name
-     that will match a file in "module" folder and it will work
+     that will match a file in "modules" folder and it will work
 
      <h2 class="js-module" data-module="test">desktop/tablette</h2>
 
@@ -19,33 +19,36 @@ var module = (function () {
 
     /**
      *
-     * @param $modules {jQuery}
+     * @param modules {NodeList}
      * @param loadFlag=false {Boolean}
      * @return {{ready: Array, load: Array}}
      */
-    var parseModules = function ($modules, loadFlag = false) {
+    var parseModules = function (modules, loadFlag = false) {
         let ready = [];
         let load = [];
-        $modules.not('.' + SELECTOR).each(function () {
-            var _class = $(this).attr('data-module');
-            try {
-                var _module = require('../modules/' + _class).default;
-                ready.push({module: _module.ready || _module.init, elem: this});
-                loadFlag && load.push({module: _module.load, elem: this});
+        for (let module of modules) {
+            if(!regIsInit.test(module.className)){
+                let _moduleName = module.getAttribute('data-module');
+                try {
+                    let _module = require('../modules/' + _moduleName).default;
+                    ready.push({module: _module.ready || _module.init, elem: module});
+                    loadFlag && load.push({module: _module.load, elem: module});
+                }
+                catch (e) {
+                    console.error('Module not foud', _moduleName, module);
+                }
             }
-            catch (e) {
-                console.error('Module not foud', _class, this);
-            }
-        });
+        }
+
         exec(ready, true);
 
-        loadFlag && $(window).on('load', function () {
+        loadFlag && window.addEventListener('load', function () {
             exec(load);
         });
     };
 
     var init = function () {
-        parseModules($('.js-module'), true);
+        parseModules(document.querySelectorAll('.js-module'), true);
     };
 
     /**
@@ -55,11 +58,11 @@ var module = (function () {
      */
     var exec = function (modules, flag = false) {
         modules.forEach(function (o) {
-            var module = o.module;
+            let module = o.module;
             if (module) {
                 module(o.elem);
                 if (flag) {
-                    $(o.elem).addClass(SELECTOR)
+                    o.elem.className += ' ' + SELECTOR_INITIALIZED;
                 }
             }
         });
@@ -73,4 +76,4 @@ var module = (function () {
 
 })();
 
-module.exports = module;
+export default module;
