@@ -1,4 +1,4 @@
-var ajaxloader = require("./ajax-load").default;
+var ajaxloader = require("./ajax-load");
 /**
  * @param options {object}
  * @param [loader=true] {Boolean}

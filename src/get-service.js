@@ -1,5 +1,4 @@
-//todo endpoint should be in params
-var ajax = require("./ajax").default;
+var ajax = require("./ajax");
 
 var useService = (function () {
     "use strict";
