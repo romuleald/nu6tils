@@ -1,11 +1,12 @@
-var ajax = require("./ajax");
+//todo endpoint should be in params
+let ajax = require("./ajax");
 
-var useService = (function () {
+let useService = (function () {
     "use strict";
 
     let endpoint = {};
 
-    var init = function (endPoint) {
+    let init = function (endPoint) {
         endpoint = Object.assign({}, endPoint);
     };
     /**
@@ -15,20 +16,35 @@ var useService = (function () {
      * @param loader {Boolean} display or not the loader
      * @returns {jQuery} ajax
      */
-    var call = function (API_service, params, loader) {
+    let call = function (API_service, params, loader) {
         if (endpoint[API_service]) {
 
             let options = {
                 url: endpoint[API_service].url
             };
-            options.method = endpoint[API_service].method;
+            if(endpoint[API_service].params){
+                params = Object.assign(endpoint[API_service].params, params);
+            }
+
+            options.type = endpoint[API_service].method;
             if (endpoint[API_service].contentType != undefined) {
                 options.contentType = endpoint[API_service].contentType;
             }
             if (endpoint[API_service].processData != undefined) {
                 options.processData = endpoint[API_service].processData;
             }
-            options.data = params;
+            if (endpoint[API_service].xhrFields != undefined) {
+                options.xhrFields = endpoint[API_service].xhrFields;
+            }
+            if (endpoint[API_service].crossDomain != undefined) {
+                options.crossDomain = endpoint[API_service].crossDomain;
+            }
+            if (/delete|put/.test(options.type)) {
+                options.url += params ? '?' + $.param(params) : '';
+            }
+            else {
+                options.data = params;
+            }
             return ajax(options, loader)
         }
         else {
