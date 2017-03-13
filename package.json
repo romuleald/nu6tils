@@ -1,7 +1,7 @@
 {
   "name": "nu6tils",
-  "version": "1.1.0",
-  "description": "Nurun Paris utilities",
+  "version": "1.2.0",
+  "description": "Antoine Sanchez utilities",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +11,10 @@
     "url": "git+https://github.com/romuleald/nu6tils.git"
   },
   "keywords": [
-    "nurun",
+    "antoine sanchez",
     "jquery",
     "getService",
+    "declarative modules",
     "ajax"
   ],
   "author": "Antoine Sanchez",
