@@ -1,9 +1,13 @@
-var ajax = require("./src/ajax");
-var ajaxLoad = require("./src/ajax-load");
-var getService = require("./src/get-service");
+let ajax = require("./src/ajax");
+let ajaxLoad = require("./src/ajax-load");
+let getService = require("./src/get-service");
+let webModule = require("./src/module");
+let renameObjectProp = require("./src/renameObjectProp");
 
 module.exports = {
-    ajax: ajax,
-    ajaxLoad: ajaxLoad,
-    getService: getService
+    ajax,
+    ajaxLoad,
+    getService,
+    webModule,
+    renameObjectProp
 };
