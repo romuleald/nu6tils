@@ -49,6 +49,7 @@ let webmodule = (function () {
                     let _moduleName = _moduleNameSplit[i];
                     try {
                         let importModule = require(__dirname + '/../../../js/modules/' + _moduleName);
+                        importModule = importModule.default || importModule;
                         let module = _create(importModule, _moduleName, DOMModule);
                         moduleReady.push({module: module, elem: DOMModule});
                         loadFlag && modulesLoad.push({module: module, elem: DOMModule});
