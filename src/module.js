@@ -48,14 +48,14 @@ let webmodule = (function () {
                 for (let i = 0; i < _moduleNameSplit.length; i++) {
                     let _moduleName = _moduleNameSplit[i];
                     try {
-                        let importModule = require('../modules/' + _moduleName);
+                        let importModule = require(__dirname + '/../../../js/modules/' + _moduleName);
                         let module = _create(importModule, _moduleName, DOMModule);
                         moduleReady.push({module: module, elem: DOMModule});
                         loadFlag && modulesLoad.push({module: module, elem: DOMModule});
                     }
                     catch (e) {
                         console.error(e);
-                        console.error('Module not foud', '../modules/' + _moduleName, DOMModule);
+                        console.error('Module not foud', './js/modules/' + _moduleName, DOMModule);
                     }
                 }
             }

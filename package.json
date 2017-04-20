@@ -1,6 +1,6 @@
 {
   "name": "nu6tils",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Antoine Sanchez utilities",
   "main": "index.js",
   "scripts": {
