@@ -48,7 +48,8 @@ let webmodule = (function () {
                 for (let i = 0; i < _moduleNameSplit.length; i++) {
                     let _moduleName = _moduleNameSplit[i];
                     try {
-                        let importModule = require(__dirname + '/../../../js/modules/' + _moduleName);
+                        //MODULEPATH must be defined in package.json, see webpack conf file
+                        let importModule = require(__dirname + MODULEPATH + _moduleName);
                         importModule = importModule.default || importModule;
                         let module = _create(importModule, _moduleName, DOMModule);
                         moduleReady.push({module: module, elem: DOMModule});
@@ -56,7 +57,7 @@ let webmodule = (function () {
                     }
                     catch (e) {
                         console.error(e);
-                        console.error('Module not foud', './js/modules/' + _moduleName, DOMModule);
+                        console.error('Module not foud', MODULEPATH + _moduleName, DOMModule);
                     }
                 }
             }

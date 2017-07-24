@@ -9,7 +9,7 @@
 
 Example of `import`
 ```javascript
-import {ajax, getService, module} from nu6tils
+import {ajax, getService, module} from 'nu6tils'
 ```
 
 ##List available
@@ -17,6 +17,7 @@ import {ajax, getService, module} from nu6tils
 * `ajax`
 * `ajax-loader`
 * `getService`
+* `webmodule
 
 ###Ajax
 
@@ -30,7 +31,7 @@ dependant of `jQuery`
 You will need to pass an jsonEndpoint param
 ```javascript
 getService.init({endPoint});
-var x = getService.call('serviceName', {param});
+let x = getService.call('serviceName', {param});
 x.done(doSomething);
 ```
 Example of a json endpoint
@@ -78,11 +79,84 @@ Example of a json endpoint
 module.init();
 ```
 
+###webpack config
 
+`webpack.conf.dev.js`
+```javascript
+const path = require('path');
+const webpack = require('webpack');
 
-`return $.ajax`
+module.exports = {
+    entry: [
+        './espace-client-front-ui/src/js/index'
+    ],
+    plugins: [
+        new webpack.DefinePlugin({
+            MODULEPATH: JSON.stringify(require("./package.json").module_path)
+        }),
+        new webpack.DefinePlugin({
+            'debug': true //set it to true in dev mode
+        })
+    ],
+    devtool: 'cheap-module-eval-source-map',
+    output: {
+        path: path.join(__dirname, 'scripts'),
+        filename: 'bundle.js',
+        publicPath: ''
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader'
+            }
+        ]
+    }
+};
+```
+
+`webpack.conf.prod.js`
+```javascript
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+    entry: [
+        './js/base'
+    ],
+    plugins: [
+        new webpack.DefinePlugin({
+            MODULEPATH: JSON.stringify(require("./package.json").module_path)
+        }),
+        new webpack.DefinePlugin({
+            'debug': false //set it to true in dev mode
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: true
+            }
+        })
+    ],
+    output: {
+        path: path.join(__dirname, 'scripts'),
+        filename: 'bundle.min.js',
+        publicPath: ''
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader'
+            }
+        ]
+    }
+};
+```
+
+Add the path to your webmodule in your `package.json` file under the `module_path` key
+
 
 ## Version update
 
-### 1.0.0
+### 1.3.0
 
